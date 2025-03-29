@@ -7,7 +7,7 @@ class XenArcModel(nn.Module):
         super().__init__()
         self.config = config
         self.embedding = nn.Embedding(vocab_size, config.embedding_dim)
-        self.transformer_encoder = nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8)
+        self.transformer_encoder = nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8, dropout=config.dropout)
         self.linear = nn.Linear(config.embedding_dim, vocab_size)
 
     def forward(self, x):

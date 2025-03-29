@@ -1,17 +1,15 @@
-# XenArc AI Prototype – Indian Language Model
-
-Model Name: XenArc-India
-
-(This model is specifically designed for Indian languages and adheres to resource constraints.)
+# BhaaratiAI: A Resource-Friendly Language Model for Indian Languages
 
 ## Core Features:
 
-- LSTM-based Language Model
-  - Basic LSTM architecture for text generation.
+- Transformer Encoder-based Language Model
+  - Transformer Encoder architecture for text generation.
 - Character-level Tokenization
   - Simple character-level tokenizer for Indian languages.
 - 128k Context Length
   - Limited context window for resource efficiency.
+- Dropout Regularization
+  - Dropout layer added to the Transformer Encoder for regularization.
 
 ## Prototype Implementation Plan:
 
@@ -19,11 +17,11 @@ Model Name: XenArc-India
   - Load data from a local text file (data/indian_text.txt).
   - Create a character-level tokenizer.
 - Model Training
-  - Train the LSTM model on the Indian text data.
+  - Train the Transformer Encoder model on the Indian text data.
   - Save model checkpoints during training.
 - Text Generation
   - Generate text using the trained model.
 
 ## Final Goal:
 
-XenArc-India aims to create a resource-friendly language model for Indian languages, demonstrating the feasibility of training such models from scratch.
+BhaaratiAI aims to create a resource-friendly language model for Indian languages, demonstrating the feasibility of training such models from scratch.
