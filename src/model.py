@@ -26,13 +26,15 @@ class XenArcModel(nn.Module):
         self.config = config
         self.embedding = nn.Embedding(vocab_size, config.embedding_dim)
         self.pos_encoder = PositionalEncoding(config.embedding_dim, config.dropout, config.context_length)
-        self.transformer_encoder = nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8, dropout=config.dropout)
+        self.transformer_encoder1 = nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8, dropout=config.dropout)
+        self.transformer_encoder2 = nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8, dropout=config.dropout)
         self.linear = nn.Linear(config.embedding_dim, vocab_size)
 
     def forward(self, x):
         x = self.embedding(x)
         x = self.pos_encoder(x)
-        x = self.transformer_encoder(x)
+        x = self.transformer_encoder1(x)
+        x = self.transformer_encoder2(x)
         x = self.linear(x)
         return x
 

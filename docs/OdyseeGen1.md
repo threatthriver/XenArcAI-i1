@@ -18,10 +18,11 @@ The model consists of the following layers:
 
 1.  **Embedding Layer:** Maps character indices to embedding vectors.
 2.  **Positional Encoding Layer:** Adds positional information to the embedding vectors.
-3.  **Transformer Encoder Layer:** Processes the embedded input using a Transformer encoder layer.
-4.  **Linear Layer:** Maps the output of the Transformer encoder layer to the vocabulary size.
+3.  **Transformer Encoder Layer 1:** Processes the embedded input using a Transformer encoder layer.
+4.  **Transformer Encoder Layer 2:** Processes the output of the first Transformer encoder layer using a second Transformer encoder layer.
+5.  **Linear Layer:** Maps the output of the second Transformer encoder layer to the vocabulary size.
 
-The Transformer encoder layer uses multi-head attention and feedforward networks to capture long-range dependencies in the input sequence. Positional encoding is added to the input embeddings to provide information about the position of each token in the sequence.
+The Transformer encoder layers use multi-head attention and feedforward networks to capture long-range dependencies in the input sequence. Positional encoding is added to the input embeddings to provide information about the position of each token in the sequence.
 
 ## Training
 
