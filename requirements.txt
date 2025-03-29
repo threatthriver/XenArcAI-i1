@@ -1,0 +1,31 @@
+# Core ML frameworks
+jax>=0.4.13
+jaxlib>=0.4.13
+flax>=0.7.0
+optax>=0.1.5
+tensorflow>=2.13.0
+torch>=2.0.0
+transformers>=4.31.0
+
+# Data processing
+webdataset>=0.2.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Utilities
+tqdm>=4.65.0
+typing-extensions>=4.7.0
+logging>=0.5.1.2
+
+# Google Cloud
+google-cloud-storage>=2.10.0
+google-api-python-client>=2.97.0
+google-auth>=2.22.0
+
+# Monitoring and visualization
+wandb>=0.15.0
+tensorboard>=2.13.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

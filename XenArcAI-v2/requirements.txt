@@ -1,0 +1,9 @@
+jax[tpu]>=0.4.23  # JAX with TPU support
+flax>=0.8.1
+transformers>=4.38.0
+datasets>=2.18.0
+optax>=0.2.1
+orbax-checkpoint>=0.4.4
+numpy>=1.26.0
+PyYAML>=6.0  # For potential config loading
+tqdm>=4.65.0
