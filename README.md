@@ -1,15 +1,17 @@
-# BhaaratiAI: A Resource-Friendly Language Model for Indian Languages
+# BhaaratiAI: A Resource-Friendly Language Model for Indian Languages (Odysee Gen 1)
 
 ## Core Features:
 
 - Transformer Encoder-based Language Model
-  - Transformer Encoder architecture for text generation.
+  - Two Transformer Encoder layers with layer normalization for improved performance.
 - Character-level Tokenization
   - Simple character-level tokenizer for Indian languages.
 - 128k Context Length
   - Limited context window for resource efficiency.
 - Dropout Regularization
   - Dropout layer added to the Transformer Encoder for regularization.
+- Positional Encoding
+  - Positional encoding added to the input embeddings.
 
 ## Prototype Implementation Plan:
 
@@ -24,4 +26,4 @@
 
 ## Final Goal:
 
-BhaaratiAI aims to create a resource-friendly language model for Indian languages, demonstrating the feasibility of training such models from scratch.
+BhaaratiAI aims to create a resource-friendly language model for Indian languages, demonstrating the feasibility of training such models from scratch. This prototype is known as Odysee Gen 1.
