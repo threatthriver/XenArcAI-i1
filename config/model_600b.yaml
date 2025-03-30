@@ -1,0 +1,44 @@
+# XenArcAI 600B Model Configuration
+
+# Model Architecture
+model:
+  name: "XenArcAI-600B"
+  hidden_size: 12288  # Increased for 600B params
+  num_layers: 48     # Deeper architecture
+  num_heads: 96      # More attention heads
+  intermediate_size: 49152  # 4x hidden size
+  max_position_embeddings: 131072  # 128k context length
+  vocab_size: 256    # Character-level tokenization
+  dropout_rate: 0.1
+  total_params: 600000000000  # 600B parameters
+
+# Training Configuration
+training:
+  gradient_checkpointing: true
+  mixed_precision: true
+  optimizer:
+    name: "AdamW"
+    learning_rate:
+      initial: 1.0e-4
+      min: 1.0e-5
+      warmup_steps: 5000
+      decay_schedule: "cosine"
+    weight_decay: 0.1
+    gradient_clipping: 1.0
+  batch_size: 32
+  accumulation_steps: 64  # For handling large model
+
+# Model Analysis Settings
+analysis:
+  function_tracking: true
+  activation_logging: true
+  attention_pattern_analysis: true
+  generation_metrics:
+    - "token_probabilities"
+    - "attention_patterns"
+    - "layer_activations"
+    - "function_usage"
+  logging:
+    frequency: 100
+    detailed_metrics: true
+    save_attention_maps: true

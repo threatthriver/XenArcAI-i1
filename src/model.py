@@ -4,10 +4,14 @@ from config.config import Config
 import math
 
 class PositionalEncoding(nn.Module):
+    """
+    Implement the PE function.
+    """
     def __init__(self, d_model, dropout=0.1, max_len=5000):
         super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(p=dropout)
 
+        # Compute the positional encodings once in log space.
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
@@ -21,21 +25,32 @@ class PositionalEncoding(nn.Module):
         return self.dropout(x)
 
 class XenArcModel(nn.Module):
+    """
+    Main XenArcModel model.
+    """
     def __init__(self, config, vocab_size):
         super().__init__()
         self.config = config
+        # Embedding layer
         self.embedding = nn.Embedding(vocab_size, config.embedding_dim)
+        # Positional encoding layer
         self.pos_encoder = PositionalEncoding(config.embedding_dim, config.dropout, config.context_length)
+        # Transformer encoder
         self.transformer_encoder = nn.TransformerEncoder(
             nn.TransformerEncoderLayer(d_model=config.embedding_dim, nhead=8, dropout=config.dropout),
-            num_layers=6  # Increased number of layers
+            num_layers=3
         )
+        # Linear layer to map to vocabulary size
         self.linear = nn.Linear(config.embedding_dim, vocab_size)
 
     def forward(self, x):
+        # Embed the input
         x = self.embedding(x) * math.sqrt(self.config.embedding_dim) # Scale embeddings
+        # Apply positional encoding
         x = self.pos_encoder(x)
+        # Pass through the transformer encoder
         x = self.transformer_encoder(x)
+        # Pass through the linear layer
         x = self.linear(x)
         return x
 

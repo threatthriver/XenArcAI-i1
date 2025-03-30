@@ -4,6 +4,7 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader, random_split
 from src.model import XenArcModel
+import time
 from src.data_pipeline import TextDataset
 from config.config import Config
 import os
@@ -30,11 +31,21 @@ def train(model, train_dataloader, val_dataloader, optimizer, scheduler, epochs,
         for i, batch in enumerate(train_dataloader):
             batch = batch.to(device)
             optimizer.zero_grad()
+
+            start_time = time.time()
             output = model(batch)
+            forward_time = time.time() - start_time
+
             loss = criterion(output.view(-1, vocab_size), batch.view(-1))
+
+            start_time = time.time()
             loss.backward()
+            backward_time = time.time() - start_time
+
             torch.nn.utils.clip_grad_norm_(model.parameters(), 0.5)  # Gradient clipping
             optimizer.step()
+
+            print(f"Forward pass time: {forward_time:.4f}s, Backward pass time: {backward_time:.4f}s")
             running_loss += loss.item()
 
             if i % 100 == 99:
@@ -49,6 +60,15 @@ def train(model, train_dataloader, val_dataloader, optimizer, scheduler, epochs,
         os.makedirs(config.model_dir, exist_ok=True)
         torch.save(model.state_dict(), os.path.join(config.model_dir, f"model_epoch_{epoch+1}.pth"))
         print(f"Epoch {epoch+1} finished, validation loss: {val_loss:.4f}, model saved.")
+
+    # Check if the device supports quantization
+    if torch.backends.quantized.engine == 'none':
+        print("Quantization is not supported on this device")
+    else:
+        # Quantize the model
+        quantized_model = torch.quantization.quantize_dynamic(
+            model, {torch.nn.Linear}, dtype=torch.qint8
+        )
 
 def validate(model, dataloader, device, vocab_size, criterion):
     """

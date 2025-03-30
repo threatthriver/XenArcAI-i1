@@ -28,6 +28,8 @@ class TextDataset(Dataset):
         except UnicodeDecodeError:
             print(f"UnicodeDecodeError: Unable to read {file_path} with utf-8 encoding. Please check file encoding.")
             return []
+        text_length = len(text)
+        print(f"Loaded data length: {text_length}")
         return text
 
     def create_tokenizer(self):

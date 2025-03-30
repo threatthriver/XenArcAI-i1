@@ -1,0 +1,58 @@
+# TPU Training Configuration
+
+# Model Architecture
+model:
+  name: "XenArcAI-Odysee-Gen1"
+  hidden_size: 1024
+  num_layers: 24
+  num_heads: 16
+  intermediate_size: 4096
+  max_position_embeddings: 131072  # 128k context length
+  vocab_size: 256  # Character-level tokenization
+  dropout_rate: 0.1
+
+# TPU Configuration
+tpu:
+  topology: "2x2x1"  # 8 TPU cores
+  batch_size_per_core: 32
+  steps_per_checkpoint: 1000
+  enable_profiling: true
+  optimization_level: 3
+
+# Training Configuration
+training:
+  max_steps: 1000000
+  warmup_steps: 10000
+  learning_rate:
+    initial: 1.0e-4
+    min: 1.0e-5
+    decay_schedule: "cosine"
+  gradient_clipping: 1.0
+  mixed_precision: true
+  seed: 42
+
+# Data Pipeline
+data:
+  train_path: "data/train.tfrecord"
+  eval_path: "data/eval.tfrecord"
+  buffer_size: 1000000
+  max_sequence_length: 1024
+  prefetch_size: 100
+
+# Logging and Monitoring
+logging:
+  log_every_n_steps: 100
+  save_checkpoints_steps: 5000
+  keep_checkpoint_max: 5
+  tensorboard:
+    update_freq: 100
+    profile_batch: [100, 200]
+
+# Validation
+validation:
+  steps: 1000
+  batch_size: 32
+  metrics:
+    - "loss"
+    - "perplexity"
+    - "accuracy"
