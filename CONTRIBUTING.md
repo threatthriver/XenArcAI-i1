@@ -1,90 +1,87 @@
 # Contributing to XenArcAI
 
-Thank you for your interest in contributing to XenArcAI! We welcome contributions from the community and are excited to have you join us in developing this open-source language model.
+## Getting Started
 
-## Code of Conduct
+### Prerequisites
+- Python 3.8+
+- PyTorch latest stable version
+- CUDA-compatible GPU (for training)
 
-By participating in this project, you agree to abide by our Code of Conduct. Please be respectful and constructive in all interactions.
-
-## How to Contribute
-
-### Reporting Issues
-- Before creating an issue, please check if a similar issue already exists
-- Provide a clear and detailed description of the issue
-- Include steps to reproduce the issue if applicable
-- Add relevant code snippets or error messages
-
-### Submitting Pull Requests
+### Development Setup
 1. Fork the repository
-2. Create a new branch for your feature/fix: `git checkout -b feature-name`
-3. Make your changes
-4. Write or update tests as needed
-5. Run the test suite to ensure everything passes
-6. Commit your changes with clear, descriptive commit messages
-7. Push to your fork and submit a pull request
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/your-username/XenArcAI-i1.git
+   cd XenArcAI-i1
+   ```
+3. Create a virtual environment:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+4. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Pull Request Guidelines
-- Keep changes focused and atomic
-- Follow the existing code style and conventions
-- Include tests for new features
-- Update documentation as needed
-- Ensure all tests pass
-- Reference any related issues
+## Development Guidelines
 
-## Development Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/XenArcAI-i1.git
-cd XenArcAI-i1
-```
-
-2. Create and activate a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-3. Install development dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Run tests:
-```bash
-python -m pytest tests/
-```
-
-## Code Style
-
-- Follow PEP 8 guidelines for Python code
+### Code Style
+- Follow PEP 8 guidelines
 - Use meaningful variable and function names
-- Add comments for complex logic
+- Add docstrings to all functions and classes
 - Keep functions focused and modular
-- Document public APIs and functions
 
-## Testing
-
+### Testing
 - Write unit tests for new features
-- Ensure existing tests pass
-- Add integration tests when needed
-- Test edge cases and error conditions
+- Ensure all tests pass before submitting PR
+- Run tests using:
+  ```bash
+  python -m pytest tests/
+  ```
 
-## Documentation
+### Commit Messages
+- Use clear, descriptive commit messages
+- Format: `[Component] Brief description`
+- Example: `[Model] Add gradient checkpointing support`
 
-- Update documentation for new features or changes
-- Keep documentation clear and concise
-- Include examples where appropriate
-- Update README.md if needed
+## Pull Request Process
 
-## License
+1. Create a new branch for your feature:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+2. Make your changes and commit them
+3. Push to your fork and submit a pull request
+4. Ensure PR description clearly describes the changes
+5. Include any relevant issue numbers
 
-By contributing to XenArcAI, you agree that your contributions will be licensed under the project's MIT License.
+### PR Review Checklist
+- [ ] Code follows style guidelines
+- [ ] Tests added and passing
+- [ ] Documentation updated
+- [ ] Commit messages are clear
+- [ ] Changes are focused and atomic
 
-## Questions?
+## Model Development
 
-If you have any questions or need help, feel free to:
-- Open an issue for discussion
-- Ask in the project's discussions section
+### Architecture Changes
+- Document parameter changes in config files
+- Update architecture documentation
+- Validate performance impact
+- Consider backward compatibility
+
+### Training Modifications
+- Document hyperparameter changes
+- Provide training curves and metrics
+- Include resource requirements
+
+## Questions or Issues?
+
+Feel free to open an issue for:
+- Bug reports
+- Feature requests
+- Documentation improvements
+- General questions
 
 Thank you for contributing to XenArcAI!

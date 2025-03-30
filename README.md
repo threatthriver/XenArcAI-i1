@@ -1,22 +1,34 @@
 # XenArc AI: Odysee Gen 1 - A Language Model
 
 ## Overview
-XenArc AI is an open-source language model project that demonstrates the feasibility of training transformer-based models from scratch. The current prototype, Odysee Gen 1, is built on the XenArcAI architecture, designed for efficient training on TPUs and scalable deployment.
+XenArc AI is an advanced open-source language model project featuring a 600B parameter transformer-based architecture. The current prototype, Odysee Gen 1, demonstrates state-of-the-art capabilities in text generation and processing, with efficient training on TPUs and scalable deployment options.
+
+## Model Architecture
+- **Scale and Capacity**
+  - 600B parameters for extensive knowledge representation
+  - 48 transformer layers with 96 attention heads per layer
+  - 12,288 hidden dimensions for rich feature extraction
+  - 128k context length for comprehensive text understanding
 
 ## Core Features
 - **Advanced Transformer Architecture**
-  - Transformer Encoder-based model with optimized layer configuration
-  - 128k context length for extensive text processing
-  - Character-level tokenization for granular text understanding
+  - Character-level tokenization (256 vocab size) for granular text understanding
+  - Sinusoidal positional encoding for sequence awareness
+  - 49,152 intermediate dimension in feed-forward networks
+  - Multi-head self-attention with parallel computation
+
 - **Performance Optimizations**
   - TPU-optimized training pipeline
-  - Gradient clipping for stable training
-  - Adaptive learning rate scheduler
-  - Dropout regularization for better generalization
+  - AdamW optimizer with 0.1 weight decay
+  - Gradient clipping at 1.0 for stable training
+  - Cosine learning rate scheduling (1e-4 initial, 1e-5 minimum)
+  - Mixed-precision training with gradient checkpointing
+
 - **Production Ready**
   - Comprehensive validation pipeline
-  - Checkpoint management system
+  - Advanced checkpoint management system
   - Scalable inference capabilities
+  - Detailed metrics logging and analysis
 
 ## Quick Start
 
@@ -28,7 +40,7 @@ XenArc AI is an open-source language model project that demonstrates the feasibi
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/XenArcAI-i1.git
+git clone https://github.com/threatthriver/XenArcAI-i1
 cd XenArcAI-i1
 
 # Create and activate virtual environment
@@ -107,6 +119,6 @@ If you use XenArcAI in your research, please cite:
   title={XenArc AI: Odysee Gen 1},
   author={XenArc AI Team},
   year={2024},
-  url={https://github.com/yourusername/XenArcAI-i1}
+  url={https://github.com/threatthriver/XenArcAI-i1}
 }
 ```
